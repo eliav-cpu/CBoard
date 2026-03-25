@@ -4,12 +4,17 @@ import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.apache.solr.client.solrj.SolrClient;
+import org.apache.solr.client.solrj.response.SolrPingResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.apache.solr.client.solrj.impl.LBHttpSolrClient;
 
 /**
  * Created by JunjieM on 2017-7-7.
  */
 public class SolrServerFactory implements PooledObjectFactory<SolrClient> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(SolrServerFactory.class);
 
     private String[] servers;
 
@@ -35,16 +40,21 @@ public class SolrServerFactory implements PooledObjectFactory<SolrClient> {
     }
 
     public void activateObject(PooledObject<SolrClient> pool) throws Exception {
-        // TODO Auto-generated method stub
+        // HTTP-based client; no state to restore on activation
     }
 
     public void passivateObject(PooledObject<SolrClient> pool) throws Exception {
-        // TODO Auto-generated method stub
+        // HTTP-based client; no state to reset on return to pool
     }
 
     public boolean validateObject(PooledObject<SolrClient> pool) {
-        // TODO Auto-generated method stub
-        return false;
+        try {
+            SolrPingResponse response = pool.getObject().ping();
+            return response.getStatus() == 0;
+        } catch (Exception e) {
+            LOG.warn("Solr connection validation failed", e);
+            return false;
+        }
     }
 
 }
