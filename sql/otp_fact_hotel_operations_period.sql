@@ -1,0 +1,22 @@
+CREATE TABLE fact_hotel_operations_period (
+  operations_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  asset_code VARCHAR(64) NOT NULL,
+  scenario_code VARCHAR(64) NOT NULL,
+  period_start DATE NOT NULL,
+  period_granularity VARCHAR(16) NOT NULL,
+  rooms_available INT,
+  rooms_sold INT,
+  occupancy_pct DECIMAL(8,4),
+  adr_value DECIMAL(12,2),
+  revpar_value DECIMAL(12,2),
+  room_revenue_value DECIMAL(14,2),
+  ancillary_revenue_value DECIMAL(14,2),
+  payroll_value DECIMAL(14,2),
+  utilities_value DECIMAL(14,2),
+  management_fee_value DECIMAL(14,2),
+  marketing_fee_value DECIMAL(14,2),
+  ffe_reserve_value DECIMAL(14,2),
+  noi_value DECIMAL(14,2),
+  ebitda_value DECIMAL(14,2),
+  fcf_value DECIMAL(14,2)
+);
