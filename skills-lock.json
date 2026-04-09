@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "presentation-generator": {
+      "source": "skills-il/marketing-growth",
+      "sourceType": "github",
+      "computedHash": "7139f63cfbb5ad8e064bc27479cdfb1bb5e3fc71eefdbf5c1bdc950fa3b08a77"
+    }
+  }
+}
