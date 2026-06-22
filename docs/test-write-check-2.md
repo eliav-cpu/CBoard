@@ -1,3 +1,0 @@
-# Test
-
-MVP write check.
