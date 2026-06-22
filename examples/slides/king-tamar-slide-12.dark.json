@@ -1,0 +1,35 @@
+{
+  "slide_id": "KT-12-DARK",
+  "project": "King Tamar",
+  "role": "12 — ריזורט אורבני בלב טביליסי",
+  "source_layer": "Client Copy V6",
+  "colorway": "dark",
+  "headline": "ריזורט אורבני בלב טביליסי",
+  "subtitle": "אדריכלות, נוף, שימושיות וחוויית מגורים מלאה.",
+  "cards": [
+    {
+      "title": "מגדל אורבני",
+      "body": "נוכחות גבוהה בלב העיר, עם שפה אדריכלית ברורה."
+    },
+    {
+      "title": "אדריכלות ונוף",
+      "body": "תכנון מודרני שמחבר בין מראה, שימושיות וחוויית מגורים."
+    },
+    {
+      "title": "מוצר פרימיום",
+      "body": "בניין שמדבר למשקיעים, דיירים וקהל שמחפש רמת מגורים גבוהה."
+    }
+  ],
+  "message_line": "חוויית מגורים עירונית שמעלה את ערך המוצר בעיני הלקוח הבא.",
+  "source_flags": [],
+  "visual": {
+    "mode": "Authority Dark",
+    "layout": "tower-left-content-right"
+  },
+  "qa": {
+    "rtl": true,
+    "no_invented_data": true,
+    "no_guarantees": true,
+    "client_screen_only": true
+  }
+}
