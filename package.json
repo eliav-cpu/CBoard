@@ -1,15 +1,26 @@
 {
   "name": "prime-king-tamar-production-system",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "description": "PRIME King Tamar controlled slide production MVP.",
   "scripts": {
     "qa:slide": "node tools/hebrew-qa/check-slide.js",
+    "qa:sample:light": "node tools/hebrew-qa/check-slide.js examples/slides/king-tamar-slide-12.light.json",
+    "qa:sample:dark": "node tools/hebrew-qa/check-slide.js examples/slides/king-tamar-slide-12.dark.json",
     "render:pptx": "node tools/pptx-renderer/render-slide.js",
-    "render:sample": "node tools/pptx-renderer/render-slide.js examples/slides/king-tamar-slide-12.light.json outputs/slides/king-tamar-slide-12.light.pptx"
+    "render:sample:pptx:light": "node tools/pptx-renderer/render-slide.js examples/slides/king-tamar-slide-12.light.json outputs/slides/king-tamar-slide-12.light.pptx",
+    "render:sample:pptx:dark": "node tools/pptx-renderer/render-slide.js examples/slides/king-tamar-slide-12.dark.json outputs/slides/king-tamar-slide-12.dark.pptx",
+    "render:html": "node tools/html-preview/render-html.js",
+    "render:sample:html:light": "node tools/html-preview/render-html.js examples/slides/king-tamar-slide-12.light.json outputs/previews/king-tamar-slide-12.light.html",
+    "render:sample:html:dark": "node tools/html-preview/render-html.js examples/slides/king-tamar-slide-12.dark.json outputs/previews/king-tamar-slide-12.dark.html",
+    "screenshot:sample:light": "node tools/visual-regression/screenshot-preview.js outputs/previews/king-tamar-slide-12.light.html outputs/screenshots/king-tamar-slide-12.light.png",
+    "screenshot:sample:dark": "node tools/visual-regression/screenshot-preview.js outputs/previews/king-tamar-slide-12.dark.html outputs/screenshots/king-tamar-slide-12.dark.png",
+    "qa:html": "node tools/visual-regression/check-html-structure.js outputs/previews/king-tamar-slide-12.light.html outputs/previews/king-tamar-slide-12.dark.html",
+    "render:sample": "npm run qa:sample:light && npm run qa:sample:dark && npm run render:sample:pptx:light && npm run render:sample:pptx:dark && npm run render:sample:html:light && npm run render:sample:html:dark && npm run qa:html"
   },
   "dependencies": {
+    "playwright": "^1.49.0",
     "pptxgenjs": "^3.12.0"
   },
   "engines": {
