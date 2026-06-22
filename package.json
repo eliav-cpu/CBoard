@@ -1,0 +1,18 @@
+{
+  "name": "prime-king-tamar-production-system",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "PRIME King Tamar controlled slide production MVP.",
+  "scripts": {
+    "qa:slide": "node tools/hebrew-qa/check-slide.js",
+    "render:pptx": "node tools/pptx-renderer/render-slide.js",
+    "render:sample": "node tools/pptx-renderer/render-slide.js examples/slides/king-tamar-slide-12.light.json outputs/slides/king-tamar-slide-12.light.pptx"
+  },
+  "dependencies": {
+    "pptxgenjs": "^3.12.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
