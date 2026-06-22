@@ -1,0 +1,37 @@
+name: King Tamar Slide MVP
+
+on:
+  workflow_dispatch:
+    inputs:
+      slide_json:
+        description: "Path to slide JSON"
+        required: true
+        default: "examples/slides/king-tamar-slide-12.light.json"
+
+jobs:
+  qa-and-render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Hebrew / commercial QA
+        run: node tools/hebrew-qa/check-slide.js "${{ github.event.inputs.slide_json }}"
+
+      - name: Render editable PPTX
+        run: node tools/pptx-renderer/render-slide.js "${{ github.event.inputs.slide_json }}" outputs/slides/rendered-slide.pptx
+
+      - name: Upload rendered slide
+        uses: actions/upload-artifact@v4
+        with:
+          name: king-tamar-rendered-slide
+          path: outputs/slides/rendered-slide.pptx
