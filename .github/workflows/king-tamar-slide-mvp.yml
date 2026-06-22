@@ -24,14 +24,29 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install Playwright chromium
+        run: npx playwright install --with-deps chromium
+
       - name: Run Hebrew / commercial QA
         run: node tools/hebrew-qa/check-slide.js "${{ github.event.inputs.slide_json }}"
 
       - name: Render editable PPTX
         run: node tools/pptx-renderer/render-slide.js "${{ github.event.inputs.slide_json }}" outputs/slides/rendered-slide.pptx
 
-      - name: Upload rendered slide
+      - name: Render HTML preview
+        run: node tools/html-preview/render-html.js "${{ github.event.inputs.slide_json }}" outputs/previews/rendered-slide.html
+
+      - name: Check HTML RTL structure
+        run: node tools/visual-regression/check-html-structure.js outputs/previews/rendered-slide.html
+
+      - name: Capture slide screenshot
+        run: node tools/visual-regression/screenshot-preview.js outputs/previews/rendered-slide.html outputs/screenshots/rendered-slide.png
+
+      - name: Upload rendered assets
         uses: actions/upload-artifact@v4
         with:
-          name: king-tamar-rendered-slide
-          path: outputs/slides/rendered-slide.pptx
+          name: king-tamar-rendered-assets
+          path: |
+            outputs/slides/rendered-slide.pptx
+            outputs/previews/rendered-slide.html
+            outputs/screenshots/rendered-slide.png
